@@ -46,6 +46,23 @@ Shippit's API returns standard HTTP status codes (e.g., 400 Bad Request, 404 Not
 
 *   `address_invalid`: The provided delivery address is invalid.
 
+The most common Shippit error codes, excluding HTTP errors, are:
+
+| Error Code | Description | Resolution |
+|---|---|---|
+| `order_cannot_be_cancelled` | The order is in a state where it cannot be canceled (e.g., already in transit). | If the order has not been picked up, contact Shippit customer service for assistance. |
+| `order_not_found` | The specified order tracking number cannot be found in the Shippit system. | Double-check the tracking number for accuracy. If the issue persists, contact Shippit support. |
+| `label_failed_rules_engine` | The order has not been allocated a valid courier due to allocation rules. | Review your allocation rules in Shippit settings and ensure they are configured correctly. |
+| `label_failed_tracking_order` | You are trying to generate a label for a tracking order, which is not supported. Shippit only provides tracking for such orders. | If you need a label, generate it outside of Shippit and then create a tracking order. |
+| `address_invalid` | The provided delivery address is invalid. | Double-check the address for accuracy and correct any errors. |
+| `label_failed_order_processing` | The order is still being processed and cannot be labeled yet. | Wait for a few moments and try again. If the issue persists, contact Shippit support. |
+| `label_failed_missing_courier` | No courier has been assigned to the order yet. | Ensure the order has been processed and allocated a courier. You can check the order status using the tracking endpoint. |
+| `label_failed_invalid_quote` | The order has no valid quotes available. | Review your courier settings and ensure that at least one courier is enabled and can service the delivery address. |
+| `label_failed_still_generating` | The label is still being generated. | Wait for a few moments and try again. |
+| `label_failed_failed_request` | The label generation request failed. | Contact Shippit support for assistance. |
+| `label_failed_courier_deprecated` | The assigned courier is no longer supported. | Update the order with a different courier allocation or contact Shippit support. |
+| `order_not_available_to_label` | The order has not been processed yet and cannot be labeled. | Wait for the order to be processed and try again. |
+
 
 #### Debugging Strategies
 
