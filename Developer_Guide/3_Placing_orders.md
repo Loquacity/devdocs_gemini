@@ -1,5 +1,3 @@
-III. Placing Orders
-
 ### III. Placing Orders
 
 The Shippit API is designed to handle a variety of order types, each with its own set of requirements and considerations. Understanding these order types is crucial for successful integration.
