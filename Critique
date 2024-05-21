@@ -1,0 +1,28 @@
+Shippit API Critique: Service and Developer Experience
+Based on the provided documents, the Shippit API offers a comprehensive suite of functionalities for order management, fulfillment, and tracking. It allows integration with various e-commerce platforms, warehouse systems, and inventory management tools.
+
+Service offerings:
+
+Order Management: The API enables mandatory order registration, capturing essential details like dangerous goods, tariff codes, dimensions, and delivery instructions. This comprehensive data capture aims to streamline carrier allocation and maximize warehouse efficiency.
+Quoting: While flat-rate cards are recommended to minimize cart abandonment, the API also provides a quoting mechanism for scenarios like bulky goods, address availability checks, and surfacing ETAs or carrier options.
+Labeling: To empower a complete fulfillment experience, the API offers functionalities for generating A6 shipping labels, A4 pick slips, ZPL codes, A4 dangerous goods documentation, and commercial invoices.
+Booking: Shippit emphasizes flexibility in booking, accommodating both API-driven and UI-driven booking processes. While API integration allows for direct booking, the UI caters to phased implementations, allowing initial order creation through the API and subsequent booking through the Shippit UI.
+Priority Booking: This service is designed for same-day deliveries and necessitates tighter integration with warehouse operations due to time sensitivity. Shippit immediately books priority orders with the carrier, unlike standard and express workflows. The API supports designating specific delivery dates and time windows for priority services.
+Feedback Mechanisms: Shippit primarily utilizes webhooks for providing feedback to integrated platforms, enabling tracking status updates and bulk analytics reports. This webhook system is activated once an order is booked and begins its outbound journey.
+Courier Allocation: Shippit's platform highlights its ability to allocate orders to the best-suited carriers through a two-step process: validation and allocation. Validation involves analyzing order details, while allocation considers factors like service, price, pickup suburb, delivery suburb, and carrier capabilities.
+Multi-Priority Courier Selection: Since April 2019, the Quote API (v3) has supported multiple priority courier options. The 'courier_type' field returns the allocated priority courier name, and Shippit allocates to the cheapest priority carrier per timeslot, potentially recommending different couriers for different timeslots.
+Developer Experience:
+
+Authentication: The documentation emphasizes a move towards a more secure authentication mechanism. Shippit deprecated the less secure practice of including the API token as a URL parameter and recommends passing the authentication token in the HTTP Authorization request header field using the "Bearer" scheme.
+Staging Environment: To facilitate testing and integration, Shippit provides a staging environment for developers to test changes before production deployment. The staging environment can be accessed by replacing the production URL with "https://api.staging.shippit.com". Developers can contact Shippit support to request a staging environment account.
+API Documentation: The documentation provides details on constructing API calls, understanding error messages, and utilizing specific fields for effective Shippit integration. Sample API payloads and detailed API documentation are available through provided links.
+API Key Management: Shippit offers the ability to create and manage multiple API secrets for a single merchant account. These secrets can be assigned specific permissions, allowing granular control over API endpoint access and data visibility. While the initial "Legacy API Secret" offers unrestricted access, newly created API secrets require at least one endpoint permission.
+Whitelisting: Shippit provides a list of important URLs and IP addresses to whitelist for security purposes, ensuring uninterrupted communication and data flow.
+Areas of Improvement:
+
+Error Handling: The documentation lacks in-depth information on specific error codes and their resolution. Clearer explanations and troubleshooting guidance for different error scenarios would enhance the developer experience.
+Rate Limiting: Information about rate limits and potential mitigation strategies is limited. While the documentation mentions a limit of 60 requests per minute per merchant, more detailed guidelines on handling rate limit scenarios would be beneficial.
+Webhook Event Handling: Deeper insights into the types of webhook events, their frequency, and best practices for robust event handling are necessary for building a resilient integration.
+Versioning: While the documentation refers to specific API versions (v3), a comprehensive versioning strategy and its implications on existing integrations are not explicitly outlined.
+Code Examples: Expanding the range of code examples to cover various programming languages and frameworks would be highly beneficial for developers with different technology stacks.
+Overall, the Shippit API seems to provide a good foundation for integrating shipping and fulfillment processes. However, improvements in error handling, rate limiting documentation, webhook event descriptions, versioning strategies, and code examples would significantly enhance the developer experience.
